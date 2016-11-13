@@ -28,6 +28,6 @@ defmodule Todolist.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:sugar, "~> 0.4.10"}]
   end
 end
