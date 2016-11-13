@@ -11,7 +11,7 @@ defmodule Todolist.Controllers.Main do
     # raw conn |> resp(200, "Todolist Home page")
     all_todo_items = TodoItem |> EctoRepo.all
 
-    conn |> render(:index)
+    conn |> render(:index, all_todo_items: all_todo_items)
   end
 
   def new(conn, []) do
@@ -49,7 +49,7 @@ defmodule Todolist.Controllers.Main do
 
         todo_item_change_set = TodoItem.changeset(todo_item, %{name: task_name, description: task_desc})
         EctoRepo.update!(todo_item_change_set)
-        
+
         index(conn, [])
       :error ->
         raw conn |> resp(200, "[Update todo item] Invalid id: #{todo_item_id}")
