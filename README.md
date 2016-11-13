@@ -64,6 +64,27 @@ config :sugar, Todolist.Router,
 mix ecto.create -r Todolist.Repos.Main
 ```
 
+- Create database schema migration file for creating the "todo_items" table
+```terminal
+mix ecto.gen.migration todo_items -r Todolist.Repos.Main
+```
+
+- Run all schema migrations that need to be run
+```
+mix ecto.migrate -r Todolist.Repos.Main
+```
+
+- To test your database setup from the Elixir REPL:
+Start the REPL like so:
+```terminal
+iex -S mix
+```
+
+Now, manually add one row to the 'todo_items' table then do this at the REPL:
+```terminal
+Todolist.Repos.Main.all Todolist.Models.TodoItem
+```
+
 
 ### Steps to run the project
 
