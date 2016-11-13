@@ -56,6 +56,22 @@ defmodule Todolist.Controllers.Main do
     end
   end
 
+  def mark_done(conn, args) do
+    todo_item_id = args[:id]
+
+    case Integer.parse todo_item_id do
+      {id_val, _} ->
+        todo_item = TodoItem |> EctoRepo.get(id_val)
+
+        todo_item_change_set = TodoItem.changeset(todo_item, %{is_done: !todo_item.is_done})
+        EctoRepo.update!(todo_item_change_set)
+
+        index(conn, [])
+      :error ->
+        raw conn |> resp(200, "[Mark todo item done] Invalid id: #{todo_item_id}")
+    end
+  end
+
   def delete(conn, args) do
       todo_item_id = args[:id]
 

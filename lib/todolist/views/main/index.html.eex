@@ -19,10 +19,26 @@
 
         <ul id="myUL">
             <%= for todo_item <- @all_todo_items do %>
-                <li title="<%= todo_item.description %>">
+              <%= if todo_item.is_done == false do %>
+              <li title="<%= todo_item.description %>" class="checked">
+                  <a href="/markdone/<%= todo_item.id %>" title="Mark this as NOT done"><span class="checked"></span></a>
+                  <a href="/edit/<%= todo_item.id %>"><%= todo_item.name %></a>
+                  <a href="/delete/<%= todo_item.id %>" title="Delete this item"><span class="close">x</span></a>
+              </li>
+              <% else %>
+              <li title="<%= todo_item.description %>">
+                  <a href="/markdone/<%= todo_item.id %>" title="Mark this as done"><span class="mark">x</span></a>
+                  <a href="/edit/<%= todo_item.id %>"><%= todo_item.name %></a>
+                  <a href="/delete/<%= todo_item.id %>" title="Delete this item"><span class="close">x</span></a>
+              </li>
+              <% end %>
+                <!-- <li title="<%= todo_item.description %>" class="checked">
+                    <a href="/markasdone/:id"><span class="checked"></span></a>
+
                     <a href="/edit/<%= todo_item.id %>"><%= todo_item.name %></a>
+
                     <a href="/delete/<%= todo_item.id %>"><span class="close">x</span></a>
-                </li>
+                </li> -->
             <% end %>
         </ul>
 

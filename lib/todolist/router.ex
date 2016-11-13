@@ -20,5 +20,7 @@ defmodule Todolist.Router do
   get "/edit/:id", Todolist.Controllers.Main, :edit
   post "/update/:id", Todolist.Controllers.Main, :update
 
+  get "/markdone/:id", Todolist.Controllers.Main, :mark_done
+
   get "/delete/:id", Todolist.Controllers.Main, :delete
 end

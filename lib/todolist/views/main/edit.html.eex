@@ -14,7 +14,7 @@
   <div class="container">
     <main role="main">
         <div id="myDIV" class="header">
-          <h2>Edit to-do item</h2>
+          <h2><a href="/">Edit to-do item</a></h2>
           <form method="POST" action="/update/<%= @todo_item.id %>">
           <input type="text" name="name" id="nameInput" placeholder="Name" value="<%= @todo_item.name %>">
           <input type="text" name="description" id="descriptionInput" placeholder="Description" value="<%= @todo_item.description %>">

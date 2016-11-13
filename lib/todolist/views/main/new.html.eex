@@ -14,7 +14,7 @@
   <div class="container">
     <main role="main">
         <div id="myDIV" class="header">
-          <h2>Create a new to-do item</h2>
+          <h2><a href="/">Create a new to-do item</a></h2>
           <form method="POST" action="/create">
           <input type="text" name="name" id="nameInput" placeholder="Name">
           <input type="text" name="description" id="descriptionInput" placeholder="Description">
