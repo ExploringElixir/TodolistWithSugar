@@ -11,7 +11,9 @@ mix new todolist --sup
 
 - Add the Sugar dependency
 ```
-
+defp deps do
+  [{:sugar, "~> 0.4.10"}]
+end
 ```
 
 - Get the Sugar dependencies
@@ -30,11 +32,30 @@ The Ecto library has already been included inside the sugar dependency and so as
 expected that the database engine you are using is Postgres. However, the next step will show how to use
 MySql instead
 ```
+config :todolist, ecto_repos: [Todolist.Repos.Main]
 
+config :todolist, Todolist.Repos.Main,
+  adapter: Ecto.Adapters.Postgres,
+  database: "todolist_dev",
+  username: "postgres",
+  password: "asdffdsa",
+  hostname: "localhost"
+
+
+
+
+config :sugar,
+  router: Todolist.Router
+
+config :sugar, Todolist.Router,
+  https_only: false,
+  http: [ port: 4000 ],
+  https: false
 ```
 
 - Configure your database to use MySql database instead of Postgres
 ```
+
 ```
 
 - The Sugar framework does not create the Ecto Repo file in the location that Ecto expects,
