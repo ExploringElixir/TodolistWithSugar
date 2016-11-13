@@ -2,6 +2,8 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :todolist, ecto_repos: [Todolist.Repos.Main]
+
 config :todolist, Todolist.Repos.Main,
   adapter: Ecto.Adapters.Postgres,
   database: "todolist_dev",

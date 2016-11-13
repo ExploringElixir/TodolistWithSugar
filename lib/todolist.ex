@@ -10,6 +10,7 @@ defmodule Todolist do
     children = [
       # Starts a worker by calling: Todolist.Worker.start_link(arg1, arg2, arg3)
       # worker(Todolist.Worker, [arg1, arg2, arg3]),
+      supervisor(Todolist.Repos.Main, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
