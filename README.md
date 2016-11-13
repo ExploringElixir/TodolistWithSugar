@@ -2,6 +2,7 @@
 
 Todolist web app written with the Elixir Sugar web framework for "Exploring Elixir" tutorial videos
 
+
 ### Steps for Setting up the project and running it
 - Create your web app with:
 ```terminal
@@ -91,3 +92,9 @@ Todolist.Repos.Main.all Todolist.Models.TodoItem
 ```
 mix server
 ```
+
+
+### References
+- http://sugar-framework.github.io/getting-started/
+- http://geoffreylessel.com/2016/from-zero-to-ecto-in-10-minutes/
+- http://www.glydergun.com/diving-into-ecto/
