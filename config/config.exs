@@ -4,9 +4,9 @@ use Mix.Config
 
 config :todolist, Todolist.Repos.Main,
   adapter: Ecto.Adapters.Postgres,
-  database: "todolist_main",
-  username: "user",
-  password: "pass",
+  database: "todolist_dev",
+  username: "postgres",
+  password: "asdffdsa",
   hostname: "localhost"
 
 
@@ -36,3 +36,11 @@ config :todolist, Todolist.Repos.Main,
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :sugar,
+  router: Todolist.Router
+
+config :sugar, Todolist.Router,
+  https_only: false,
+  http: [ port: 4000 ],
+  https: false
