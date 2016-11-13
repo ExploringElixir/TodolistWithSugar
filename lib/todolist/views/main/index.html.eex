@@ -27,7 +27,7 @@
         </ul>
 
         <div>
-          <span onclick="newElement()" class="addBtn">Add</span>
+          <span class="addBtn"><a href="/new">Add</a></span>
         </div>
     </main>
   </div>

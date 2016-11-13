@@ -10,17 +10,16 @@ defmodule Todolist.Controllers.Main do
   def index(conn, []) do
     # raw conn |> resp(200, "Todolist Home page")
     all_todo_items = TodoItem |> EctoRepo.all
-    IO.inspect all_todo_items
 
     conn |> render(:index)
   end
 
   def new(conn, []) do
-    raw conn |> resp(200, "Page for adding a new todolist item")
+    conn |> render(:new)
   end
 
   def create(conn, []) do
-    %{"name" => task_name, "desc" => task_desc} = conn.params
+    %{"name" => task_name, "description" => task_desc} = conn.params
     item_insert_result = EctoRepo.insert %TodoItem{name: task_name, description: task_desc,
         is_done: false, inserted_at: Ecto.DateTime.from_erl(:erlang.localtime)}
 
@@ -50,7 +49,7 @@ defmodule Todolist.Controllers.Main do
 
         todo_item_change_set = TodoItem.changeset(todo_item, %{name: task_name, description: task_desc})
         EctoRepo.update!(todo_item_change_set)
-        # raw conn |> resp(200, "todolist item Updated successfully!")
+        
         index(conn, [])
       :error ->
         raw conn |> resp(200, "[Update todo item] Invalid id: #{todo_item_id}")
