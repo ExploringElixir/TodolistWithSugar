@@ -44,5 +44,5 @@ config :sugar,
 
 config :sugar, Todolist.Router,
   https_only: false,
-  http: [ port: 4000 ],
+  http: [port: 4000],
   https: false

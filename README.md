@@ -3,7 +3,7 @@
 Todolist web app written with the Elixir Sugar web framework for "Exploring Elixir" tutorial videos
 
 
-### Steps for Setting up the project and running it
+### Steps I took to set up the project
 - Create your web app with:
 ```terminal
 mix new todolist --sup
@@ -122,6 +122,8 @@ Todolist.Repos.Main.all Todolist.Models.TodoItem
 ### Steps to run the project
 
 ```
+mix deps.get
+mix compile
 mix server
 ```
 
