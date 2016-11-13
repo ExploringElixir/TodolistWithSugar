@@ -98,3 +98,8 @@ mix server
 - http://sugar-framework.github.io/getting-started/
 - http://geoffreylessel.com/2016/from-zero-to-ecto-in-10-minutes/
 - http://www.glydergun.com/diving-into-ecto/
+- https://bordeltabernacle.github.io/2016/02/12/notes-on-elixir-templating-with-eex.html
+- HTML and CSS styling
+  http://www.w3schools.com/howto/howto_js_todolist.asp
+- https://engineering.appcues.com/2016/02/02/too-many-dicts.html
+- https://github.com/elixir-ecto/ecto/wiki/Ecto-Basics

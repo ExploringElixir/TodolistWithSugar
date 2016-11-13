@@ -13,8 +13,12 @@ defmodule Todolist.Router do
 
   # Define your routes here
   get "/", Todolist.Controllers.Main, :index
-  get "/new", Todolist.Controllers.Main, :new
-  get "/show/:id", Todolist.Controllers.Main, :show
-  post "/edit/:id", Todolist.Controllers.Main, :edit
 
+  get "/new", Todolist.Controllers.Main, :new
+  post "/create", Todolist.Controllers.Main, :create
+
+  get "/edit/:id", Todolist.Controllers.Main, :edit
+  post "/update/:id", Todolist.Controllers.Main, :update
+
+  # get "/delete/:id", Todolist.Controllers.Main, :delete
 end

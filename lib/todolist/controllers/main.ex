@@ -1,24 +1,59 @@
 defmodule Todolist.Controllers.Main do
   use Sugar.Controller
+  alias Todolist.Repos.Main, as: EctoRepo
+  alias Todolist.Models.TodoItem
+
+  require Ecto.DateTime
+  require Logger
+
 
   def index(conn, []) do
-    raw conn |> resp(200, "Todolist Home page")
-  end
+    # raw conn |> resp(200, "Todolist Home page")
+    all_todo_items = TodoItem |> EctoRepo.all
+    IO.inspect all_todo_items
 
-  def show(conn, args) do
-    todo_item_id = args[:id]
-
-    raw conn |> resp(200, "showing Todo item #{todo_item_id}")
+    conn |> render(:index)
   end
 
   def new(conn, []) do
     raw conn |> resp(200, "Page for adding a new todolist item")
   end
 
+  def create(conn, []) do
+    %{"name" => task_name, "desc" => task_desc} = conn.params
+    item_insert_result = EctoRepo.insert %TodoItem{name: task_name, description: task_desc,
+        is_done: false, inserted_at: Ecto.DateTime.from_erl(:erlang.localtime)}
+
+    case item_insert_result do
+      {:ok, new_item} ->
+        index(conn, [])
+      {:error, reason} ->
+        IO.inspect "Error in creating todo item! #{reason}"
+    end
+  end
+
+
   def edit(conn, args) do
     todo_item_id = args[:id]
+    todo_item = TodoItem |> EctoRepo.get(todo_item_id)
 
-    %{"name" => name, "desc" => desc} = conn.params
-    raw conn |> resp(200, "Page to edit todolist item: #{todo_item_id} with name: #{name}, description: #{desc}")
+    conn |> render(:edit, [todo_item: todo_item])
+  end
+
+  def update(conn, args) do
+    todo_item_id = args[:id]
+
+    case Integer.parse todo_item_id do
+      {id_val, _} ->
+        %{"name" => task_name, "desc" => task_desc} = conn.params
+        todo_item = TodoItem |> EctoRepo.get(id_val)
+
+        todo_item_change_set = TodoItem.changeset(todo_item, %{name: task_name, description: task_desc})
+        EctoRepo.update!(todo_item_change_set)
+        # raw conn |> resp(200, "todolist item Updated successfully!")
+        index(conn, [])
+      :error ->
+        raw conn |> resp(200, "[Update todo item] Invalid id: #{todo_item_id}")
+    end
   end
 end
