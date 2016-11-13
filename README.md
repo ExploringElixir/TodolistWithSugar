@@ -1,24 +1,5 @@
 # Todolist
 
-**TODO: Add description**
+Todolist web app written with the Elixir Sugar web framework for "Exploring Elixir" tutorial videos
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add `todolist` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:todolist, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `todolist` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:todolist]]
-    end
-    ```
-
+### Steps for running it
