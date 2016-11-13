@@ -11,7 +11,6 @@ defmodule Todolist.Models.TodoItem do
   end
 
   def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, [:name, :description, :is_done, :inserted_at])
+    struct |> cast(params, [:name, :description, :is_done, :inserted_at])
   end
 end

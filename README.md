@@ -28,7 +28,19 @@ mix compile
 mix sugar.init
 ```
 
-- Configure your database settings and server port in the config/config.exs file
+- Configure the router and server port in the config/config.exs file
+Add the below code to your config/config.exs file
+```
+config :sugar,
+  router: Todolist.Router
+
+config :sugar, Todolist.Router,
+  https_only: false,
+  http: [ port: 4000 ],
+  https: false
+```
+
+- Configure your database settings
 The Ecto library has already been included inside the sugar dependency and so as the postgrex library so it is
 expected that the database engine you are using is Postgres. However, the next step will show how to use
 MySql instead
@@ -41,22 +53,42 @@ config :todolist, Todolist.Repos.Main,
   username: "postgres",
   password: "asdffdsa",
   hostname: "localhost"
-
-
-
-
-config :sugar,
-  router: Todolist.Router
-
-config :sugar, Todolist.Router,
-  https_only: false,
-  http: [ port: 4000 ],
-  https: false
 ```
 
 - Configure your database to use MySql database instead of Postgres
+In your config/config.exs file, use the below code instead of the one above.
+```
+config :todolist, ecto_repos: [Todolist.Repos.Main]
+
+config :todolist, Todolist.Repos.Main,
+  adapter: Ecto.Adapters.MySQL,
+  database: "todolist_dev",
+  username: "root",
+  password: "",
+  hostname: "localhost"
 ```
 
+In your mix.exs file, your ```deps``` should look like this:
+
+Using ```Postgres```
+```
+defp deps do
+  [{:sugar, "~> 0.4.10"}]
+end
+```
+
+Using ```MySql```
+```
+defp deps do
+  [{:sugar, "~> 0.4.10"},
+  {:mariaex, ">= 0.0.0"}]
+end
+```
+
+Then run:
+```
+mix deps.get
+mix compile
 ```
 
 - The Sugar framework does not create the Ecto Repo file in the location that Ecto expects,

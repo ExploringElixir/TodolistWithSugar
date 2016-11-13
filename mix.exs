@@ -19,6 +19,7 @@ defmodule Todolist.Mixfile do
   end
 
   defp deps do
-    [{:sugar, "~> 0.4.10"}]
+    [{:sugar, "~> 0.4.10"},
+    {:mariaex, ">= 0.0.0"}]
   end
 end

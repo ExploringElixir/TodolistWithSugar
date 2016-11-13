@@ -5,10 +5,10 @@ use Mix.Config
 config :todolist, ecto_repos: [Todolist.Repos.Main]
 
 config :todolist, Todolist.Repos.Main,
-  adapter: Ecto.Adapters.Postgres,
-  database: "todolist_dev",
-  username: "postgres",
-  password: "asdffdsa",
+  adapter: Ecto.Adapters.MySQL,
+  database: "todolist",
+  username: "root",
+  password: "",
   hostname: "localhost"
 
 
