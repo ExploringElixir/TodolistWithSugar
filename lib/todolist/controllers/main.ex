@@ -44,7 +44,7 @@ defmodule Todolist.Controllers.Main do
 
     case Integer.parse todo_item_id do
       {id_val, _} ->
-        %{"name" => task_name, "desc" => task_desc} = conn.params
+        %{"name" => task_name, "description" => task_desc} = conn.params
         todo_item = TodoItem |> EctoRepo.get(id_val)
 
         todo_item_change_set = TodoItem.changeset(todo_item, %{name: task_name, description: task_desc})
@@ -54,5 +54,19 @@ defmodule Todolist.Controllers.Main do
       :error ->
         raw conn |> resp(200, "[Update todo item] Invalid id: #{todo_item_id}")
     end
+  end
+
+  def delete(conn, args) do
+      todo_item_id = args[:id]
+
+      case Integer.parse todo_item_id do
+        {id_val, _} ->
+          todo_item = TodoItem |> EctoRepo.get(id_val)
+
+          EctoRepo.delete(todo_item)
+          index(conn, [])
+        :error ->
+          raw conn |> resp(200, "[Delete todo item] Invalid id: #{todo_item_id}")
+      end
   end
 end

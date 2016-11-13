@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>main/edit - Todolist</title>
+  <link rel="stylesheet" href="/static/css/appMainStyles.css">
+</head>
+<body>
+  <div class="container">
+    <main role="main">
+        <div id="myDIV" class="header">
+          <h2>Edit to-do item</h2>
+          <form method="POST" action="/update/<%= @todo_item.id %>">
+          <input type="text" name="name" id="nameInput" placeholder="Name" value="<%= @todo_item.name %>">
+          <input type="text" name="description" id="descriptionInput" placeholder="Description" value="<%= @todo_item.description %>">
+          <br/><br/>
+
+          <input type="submit" class="createNewTodoItemBtn" value="Update" />
+          </form>
+        </div>
+    </main>
+  </div>
+</body>
+</html>

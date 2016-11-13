@@ -19,7 +19,10 @@
 
         <ul id="myUL">
             <%= for todo_item <- @all_todo_items do %>
-                <li title="<%= todo_item.description %>"><%= todo_item.name %></li>
+                <li title="<%= todo_item.description %>">
+                    <a href="/edit/<%= todo_item.id %>"><%= todo_item.name %></a>
+                    <a href="/delete/<%= todo_item.id %>"><span class="close">x</span></a>
+                </li>
             <% end %>
         </ul>
 
