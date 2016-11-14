@@ -46,3 +46,7 @@ config :sugar, Todolist.Router,
   https_only: false,
   http: [port: 4000],
   https: false
+
+config :remix,
+  escript: true,
+  silent: true

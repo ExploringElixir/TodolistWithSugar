@@ -14,12 +14,16 @@ defmodule Todolist.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
+    [applications: applications(Mix.env),
      mod: {Todolist, []}]
   end
 
+  defp applications(:dev), do: applications(:all) ++ [:remix]
+  defp applications(_all), do: [:logger]
+
   defp deps do
     [{:sugar, "~> 0.4.10"},
-    {:mariaex, ">= 0.6.0"}]
+    {:mariaex, ">= 0.6.0"},
+    {:remix, "~> 0.0.1", only: :dev}]
   end
 end
