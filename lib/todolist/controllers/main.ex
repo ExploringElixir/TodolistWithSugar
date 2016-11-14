@@ -42,7 +42,7 @@ defmodule Todolist.Controllers.Main do
   def update(conn, args) do
     todo_item_id = args[:id]
 
-    case Integer.parse todo_item_id do
+    case Integer.parse(todo_item_id) do
       {id_val, _} ->
         %{"name" => task_name, "description" => task_desc} = conn.params
         todo_item = TodoItem |> EctoRepo.get(id_val)
@@ -59,7 +59,7 @@ defmodule Todolist.Controllers.Main do
   def mark_done(conn, args) do
     todo_item_id = args[:id]
 
-    case Integer.parse todo_item_id do
+    case Integer.parse(todo_item_id) do
       {id_val, _} ->
         todo_item = TodoItem |> EctoRepo.get(id_val)
 
@@ -75,7 +75,7 @@ defmodule Todolist.Controllers.Main do
   def delete(conn, args) do
       todo_item_id = args[:id]
 
-      case Integer.parse todo_item_id do
+      case Integer.parse(todo_item_id) do
         {id_val, _} ->
           todo_item = TodoItem |> EctoRepo.get(id_val)
 

@@ -1,6 +1,10 @@
 # Todolist
 
-Todolist web app written with the Elixir Sugar web framework for "Exploring Elixir" tutorial videos
+Todolist web app written with the Elixir Sugar web framework for "Exploring Elixir" tutorial videos.
+
+
+### Assumptions
+You'll need to have Erlang and Elixir installed. You'll also need to have Postgres or MySql installed.
 
 
 ### Steps I took to set up the project
@@ -43,26 +47,27 @@ config :sugar, Todolist.Router,
 - Configure your database settings
 The Ecto library has already been included inside the sugar dependency and so as the postgrex library so it is
 expected that the database engine you are using is Postgres. However, the next step will show how to use
-MySql instead
+MySql instead. In the below code snippet replace the database connection details with yours.
 ```
 config :todolist, ecto_repos: [Todolist.Repos.Main]
 
 config :todolist, Todolist.Repos.Main,
   adapter: Ecto.Adapters.Postgres,
-  database: "todolist_dev",
+  database: "todolist",
   username: "postgres",
   password: "asdffdsa",
   hostname: "localhost"
 ```
 
 - Configure your database to use MySql database instead of Postgres
-In your config/config.exs file, use the below code instead of the one above.
+In your config/config.exs file, use the below code instead of the one above. Replace the database connection details with yours.
+Notice that the main thing that changed is the adapter.
 ```
 config :todolist, ecto_repos: [Todolist.Repos.Main]
 
 config :todolist, Todolist.Repos.Main,
   adapter: Ecto.Adapters.MySQL,
-  database: "todolist_dev",
+  database: "todolist",
   username: "root",
   password: "",
   hostname: "localhost"
@@ -81,7 +86,7 @@ Using ```MySql```
 ```
 defp deps do
   [{:sugar, "~> 0.4.10"},
-  {:mariaex, ">= 0.0.0"}]
+  {:mariaex, ">= 0.6.0"}]
 end
 ```
 
