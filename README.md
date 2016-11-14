@@ -1,6 +1,6 @@
 # Todolist
 
-Todolist web app written with the Elixir Sugar web framework for "Exploring Elixir" tutorial videos.
+A Todolist web app written with the Elixir Sugar web framework for "Exploring Elixir" tutorial videos.
 
 
 ### Assumptions
@@ -46,8 +46,11 @@ config :sugar, Todolist.Router,
 
 - Configure your database settings
 The Ecto library has already been included inside the sugar dependency and so as the postgrex library so it is
-expected that the database engine you are using is Postgres. However, the next step will show how to use
-MySql instead. In the below code snippet replace the database connection details with yours.
+expected that the database engine you are using is Postgres.
+
+However, the next step will show how to use MySql instead.
+
+In the below code snippet replace the database connection details with yours.
 ```
 config :todolist, ecto_repos: [Todolist.Repos.Main]
 
@@ -60,7 +63,10 @@ config :todolist, Todolist.Repos.Main,
 ```
 
 - Configure your database to use MySql database instead of Postgres
-In your config/config.exs file, use the below code instead of the one above. Replace the database connection details with yours.
+In your config/config.exs file, use the below code instead of the one above.
+
+Replace the database connection details with yours.
+
 Notice that the main thing that changed is the adapter.
 ```
 config :todolist, ecto_repos: [Todolist.Repos.Main]
@@ -96,31 +102,19 @@ mix deps.get
 mix compile
 ```
 
-- The Sugar framework does not create the Ecto Repo file in the location that Ecto expects,
-  so to create the database from a mix command we do this:
+- To create the database from a mix command we do this:
 ```terminal
 mix ecto.create -r Todolist.Repos.Main
 ```
 
-- Create database schema migration file for creating the "todo_items" table
+- To create a database schema migration file for creating the "todo_items" table we do this:
 ```terminal
 mix ecto.gen.migration todo_items -r Todolist.Repos.Main
 ```
 
-- Run all schema migrations that need to be run
+- To run all schema migrations we do this:
 ```
 mix ecto.migrate -r Todolist.Repos.Main
-```
-
-- To test your database setup from the Elixir REPL:
-Start the REPL like so:
-```terminal
-iex -S mix
-```
-
-Now, manually add one row to the 'todo_items' table then do this at the REPL:
-```terminal
-Todolist.Repos.Main.all Todolist.Models.TodoItem
 ```
 
 
